@@ -5,3 +5,9 @@ Order Directory is a little script created in Python, based in https://github.co
 Thanks to HolaMundo youtube Channel for that idea ;-)
 
 https://www.youtube.com/watch?v=sW4ScHICKtI&ab_channel=HolaMundo
+
+
+Arguments
+-t --todas Process all files 
+-e -extension Process files with indicate extension
+-r --ruta The directory to process
