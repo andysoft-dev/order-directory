@@ -1,6 +1,7 @@
 #from PIL import Image
 import os
 import sys, getopt
+import random
 
 downloadsFolder = "c:/Users/andyj/Downloads/"
 todos = False
@@ -35,10 +36,10 @@ print (("Todos %s") % todos)
 
 if __name__ == "__main__":
     for filename in os.listdir(downloadsFolder):
-        es_archivo =os.path.isfile(filename)
+        es_archivo =os.path.isfile(downloadsFolder + filename)
         #print(es_archivo)
 
-            #print ("pasa aca")
+        #print ("pasa aca")
         name, extension = os.path.splitext(downloadsFolder + filename)
         if todos==True:
             #print ("pasa por aca")
@@ -47,8 +48,20 @@ if __name__ == "__main__":
                 os.mkdir(PDFolder)
             except FileExistsError:
                 pass
-            os.rename(downloadsFolder + filename, PDFolder + filename)
-            print ((filename + " movido a %s") % extension[1:])
+
+            from os.path import exists
+
+            file_exists = exists(downloadsFolder + filename)
+            if file_exists ==True and es_archivo==True:
+                filename2 =  str(random.randint(0,100000)) + "_" + filename
+
+            else:
+                filename2 = filename
+
+
+            os.rename(downloadsFolder + filename, PDFolder + filename2)
+            if  es_archivo ==True:
+                print ((filename + " movido a %s") % extension[1:])
 
         elif extension in [exte]:
             PDFolder = downloadsFolder + "/" + exte[1:] + "/"
@@ -57,6 +70,14 @@ if __name__ == "__main__":
             except FileExistsError:
                 pass
 
-            os.rename(downloadsFolder + filename, PDFolder + filename)
-            print (filename + " movido a " + exte[1:])
+            from os.path import exists
+            file_exists = exists(downloadsFolder + filename)
+            if file_exists ==True and es_archivo==True:
+                filename2 =  str(random.randint(0,100000)) + "_" + filename
+            else:
+                filename2 = filename
+
+            os.rename(downloadsFolder + filename, PDFolder + filename2)
+            if es_archivo ==True:
+                print (filename + " movido a " + exte[1:])
 
